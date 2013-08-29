@@ -110,7 +110,7 @@ class kiInfiniteSidebars {
 	    			$('.removal_status').each(function(){
 	    				$(this).hide();
 	    			});
-	    			var ajaxurl = '<?php echo get_bloginfo("url"); ?>/wp-admin/admin-ajax.php';
+	    			var ajaxurl = '<?php echo home_url(); ?>/wp-admin/admin-ajax.php';
 	    			$('#sidebar-name').keypress(function(e) {
 				        if (e.keyCode == 13) {
 	    					e.preventDefault();
@@ -153,8 +153,9 @@ class kiInfiniteSidebars {
 							});
 						}
 					});
-					$("#ki_sidebars_table").on("click", function(e) {
+					$(".remove_container").on("click", function(e) {
 						$target = $( $(e.target).parent() );
+						
 						confirmation = confirm('Are you sure you want to remove "' + $target.data("remove-sidebar") + '"?\nThis will remove any widgets you have assigned to this sidebar.');
 		                if(confirmation){
 							$target.children('.removal_status').fadeIn();
@@ -202,7 +203,6 @@ class kiInfiniteSidebars {
 		$alt = 0;
 		if( is_array($this->sidebars) && !empty($this->sidebars) ):
 		?>
-			<h6><?php echo $this->dump; ?></h6>
             <table id="ki_sidebars_table" style="width:100%;">
                 <tr>
                     <th>NAME</th>
